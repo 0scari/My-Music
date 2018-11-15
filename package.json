@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "340CT coursework",
   "main": "index.js",
-  "coverageThreshold":"100%",
+  "coverageThreshold": "100%",
   "scripts": {
     "test": "jest --coverage ",
     "watch": "node_modules/.bin/jest --coverage --watchAll"
