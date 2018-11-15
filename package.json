@@ -1,0 +1,33 @@
+{
+  "name": "pozdnako-yyy",
+  "version": "1.0.0",
+  "description": "340CT coursework",
+  "main": "index.js",
+  "coverageThreshold":"100%",
+  "scripts": {
+    "test": "jest --coverage ",
+    "watch": "node_modules/.bin/jest --coverage --watchAll"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": -10
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.coventry.ac.uk/340CT-1819SEPJAN/pozdnako-yyy.git"
+  },
+  "author": "Oskars Pozdnakovs",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.8.0",
+    "jest": "^23.6.0"
+  }
+}
