@@ -2,6 +2,6 @@ version: '3'
 
 services:
   music-management:
-    build: .
+    build: ./music-management
     ports:
     - "3000:3000"
