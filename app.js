@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const sassMiddleware = require('node-sass-middleware')
 
-const musicPlaybackRouter = require('./modules/music-playback/routes')
+const musicPlaybackRouter = require('./modules/music-management/routes')
 
 const app = express()
 
