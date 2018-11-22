@@ -1,0 +1,8 @@
+{
+  "name": "pozdnako-y3",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^5.8.0"
+  }
+}

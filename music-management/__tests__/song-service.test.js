@@ -2,7 +2,7 @@
 
 /* eslint-disable indent */
 
-const mp3Service = require('../../modules/music-management/mp3-service')
+const mp3Service = require('../services/mp3-service')
 
 describe('add', () => {
 
@@ -18,12 +18,7 @@ describe('add', () => {
         done()
     })
 
-    test('adding a single item', () => {
-        expect.assertions(1)
-        mp3Service.add('bread', 1)
-        const items = mp3Service.getAll()
-        expect(items.length).toBe(1)
-    })
+
 
 })
 

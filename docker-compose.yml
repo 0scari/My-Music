@@ -5,6 +5,13 @@ services:
     build: ./music-management
     ports:
     - "3000:3000"
+    - "27017:27017"
     volumes:
     - /Users/oskarspozdnakovs/pozdnako-y3/website:/usr/src/website
+    - mongoData:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: secret
 
+volumes:
+  mongoData:
