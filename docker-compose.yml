@@ -5,3 +5,6 @@ services:
     build: ./music-management
     ports:
     - "3000:3000"
+    volumes:
+    - /Users/oskarspozdnakovs/pozdnako-y3/website:/usr/src/website
+
