@@ -6,6 +6,7 @@ services:
     ports:
     - "3000:3000"
     - "27017:27017"
+    - "9229:9229"
     volumes:
     - /Users/oskarspozdnakovs/pozdnako-y3/website:/usr/src/website
     - mongoData:/data/db

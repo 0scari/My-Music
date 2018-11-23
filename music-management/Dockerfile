@@ -8,9 +8,12 @@ RUN apt-get install -y nodejs
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY . .
+RUN rm -r node_modules
 WORKDIR /usr/src/app
 
 RUN npm install
 
 EXPOSE 3000
+EXPOSE 9229
+
 CMD [ "npm", "start" ]
