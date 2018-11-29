@@ -4,23 +4,6 @@ const gridfsstream = require('gridfs-stream')
 const mongoose = require('mongoose')
 const fs = require('fs')
 
-
-// module.exports.stream = res => {
-//     mongoose.connect(process.env.MONGO_CONN_STR)
-//     const conn = mongoose.connection
-//     gridfsstream.mongo = mongoose.mongo
-//     conn.once('open', () => {
-//         const gfs = gridfsstream(conn.db)
-//         const readstream = gfs.createReadStream({
-//             filename: 'Blue Browne.mp3'
-//         })
-//         readstream.pipe(res)
-//             .on('close', x => {
-//                 res.end();
-//             })
-//     })
-// }
-
 module.exports.storeFile = (filePath, fileName) =>
     new Promise((resolve, reject) => {
         mongoose.connect(process.env.MONGO_CONN_STR)
@@ -39,10 +22,6 @@ module.exports.storeFile = (filePath, fileName) =>
         })
     })
 
-module.exports.sFile = async(filePath, fileName) => {
-    //
-}
-
 module.exports.streamToMongo = (promiseContols, writeStream, filePath) => {
     fs.createReadStream(filePath)
         .pipe(writeStream)
@@ -58,3 +37,19 @@ module.exports.streamToMongo = (promiseContols, writeStream, filePath) => {
             promiseContols.reject(err)
         })
 }
+
+module.exports.openReadStream = (res, songId) =>
+    new Promise((resolve, reject) => {
+        mongoose.connect(process.env.MONGO_CONN_STR)
+        const conn = mongoose.connection
+        // gridfsstream.mongo =
+        conn.once('open', () => {
+            const gfs = gridfsstream(conn.db, mongoose.mongo)
+            const readStream = gfs.createReadStream({
+                filename: songId
+            })
+            readStream.pipe(res)
+                .on('finish', () => resolve())
+                .on('error', (err) => reject(err))
+        })
+    })

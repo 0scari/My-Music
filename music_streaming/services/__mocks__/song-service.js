@@ -5,8 +5,6 @@ const ss = jest.genMockFromModule('../song-service');
 ss.storeFile = (filePath, fileName) =>
 null
 
-ss.sFile = async(filePath, fileName) => {
-    //
-}
+ss.openReadStream = jest.fn()
 
 module.exports = ss
