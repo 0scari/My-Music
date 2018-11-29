@@ -19,7 +19,6 @@
         "eqeqeq": "error",
         "global-require": "error",
         "handle-callback-err": "warn",
-        "indent": [1, "tab", {"SwitchCase": 1}],
         "key-spacing": ["error", {"beforeColon": false, "afterColon": true}],
         "linebreak-style": ["warn", "unix"],
         "max-depth": ["error", 3],
