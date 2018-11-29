@@ -4,8 +4,6 @@ const request = require('supertest')
 const server = require('../bin/www')
 const status = require('http-status-codes')
 
-const songServide = require('../services/song-service')
-
 jest.mock('../services/song-service')
 
 beforeAll( async() => console.log('Jest starting!'))
@@ -20,7 +18,7 @@ describe('POST /music_streaming/song-upload', () => {
 
     test('check if 202 returned when sending file', async done => {
         //expect.assertions(2)
-        await request(server).post('/music_streaming/song-upload')
+        await request(server).post('/music-streaming/song-upload')
             .field('title', 'ph')
             .field('artist', 'ph')
             .field('album', 'ph')
@@ -31,7 +29,7 @@ describe('POST /music_streaming/song-upload', () => {
 
     test('check if 400 returned when artist parameter not present', async done => {
         //expect.assertions(2)
-        await request(server).post('/music_streaming/song-upload')
+        await request(server).post('/music-streaming/song-upload')
             .field('title', 'ph')
             .field('aaa', 'dfsa')
             .field('album', 'ph')
@@ -65,5 +63,21 @@ describe('POST /music_streaming/song-upload', () => {
     //     expect(data.message).toBe('foo')
     //     done()
     // })
+})
 
+describe('GET /music_streaming/:id', () => {
+    afterEach(() => {
+        jest.restoreAllMocks();
+    })
+    test('check if 200 returned when ', async done => {
+        const ss = require('../services/song-service')
+        const param = 'song1'
+        // jest.spyOn(ss, 'openReadStream')
+        await request(server).get('/music-streaming/' + param)
+            .expect(status.OK)
+        expect(ss.openReadStream).toHaveBeenCalledTimes(1)
+        // The 2nd argument of the first call to the function was song1
+        expect(ss.openReadStream.mock.calls[0][1]).toBe(param)
+        done()
+    })
 })
