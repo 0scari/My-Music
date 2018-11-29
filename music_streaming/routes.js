@@ -30,21 +30,18 @@ router.post('/song-upload', async(req, res) => {
     })
 })
 
-router.get('/', async(req, res) => {
-    res.render('home')
-})
+// router.get('/', async(req, res) => {
+//     res.render('home')
+// })
 
-router.delete('/:id', async(req, res) => {
-    req.params.id
-    songService.stream(res)
-    // const form = new multiparty.Form();
-    // form.on('part', (part) => {
-    //     part.pipe(fs.createWriteStream(`./${part.filename}`))
-    //         .on('close', () => {
-    //             res.end('OK')
-    //         } )
-    // })
-    // form.parse(req);
+router.get('/:id', async(req, res) => {
+    try {
+        await songService.openReadStream(res, req.params.id)
+        res.end()
+    } catch (e) {
+        res.status(status.BAD_REQUEST).send(e)
+    }
+
 })
 
 module.exports = router
