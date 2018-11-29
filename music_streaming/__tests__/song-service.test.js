@@ -29,9 +29,22 @@ describe('SongService test suit', () => {
             reject: (err) => {},
             resolve: () => {}},
             mockedStream)
-        mockedStream.end(() => {
+        mockedStream.end(() => { // end streaming to trigger finish event
             expect(fs.unlink).toHaveBeenCalledTimes(1)
             done()
         })
+    })
+
+    test('check if .openReadStream() gets to streaming finidh', async done => {
+        const mockedStream = require('stream').Writable()
+        try {
+            const promise = songService.openReadStream(mockedStream, "")
+            mockedStream.end(async() => { // end streaming to trigger finish event
+                await promise
+                done()
+            })
+        } catch (e) {
+            throw new Error('Streaming failed:\n > ' + e)
+        }
     })
 })

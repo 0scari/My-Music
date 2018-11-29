@@ -1,8 +1,15 @@
 'use strict'
 
- let Grid;
+const mockedStream = require('stream').Readable()
+mockedStream._read = function(size) { /* do nothing */ };
 
-Grid = function(db, mongo) {return {createWriteStream: (x) => {}}}
+
+const Grid = function(db, mongo) {
+ return {
+     createWriteStream: () => {},
+     createReadStream: () => mockedStream
+ }
+}
 
 module.exports = Grid
 
