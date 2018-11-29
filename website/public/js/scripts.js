@@ -17,10 +17,10 @@
 
     // Toggle Left Menu
    jQuery('.menu-list > a').click(function() {
-      
+
       var parent = jQuery(this).parent();
       var sub = parent.find('> ul');
-      
+
       if(!jQuery('body').hasClass('left-side-collapsed')) {
          if(sub.is(':visible')) {
             sub.slideUp(200, function(){
@@ -68,7 +68,7 @@
    // Menu Toggle
    jQuery('.toggle-btn').click(function(){
        $(".left-side").getNiceScroll().hide();
-       
+
        if ($('body').hasClass('left-side-collapsed')) {
            $(".left-side").getNiceScroll().hide();
        }
@@ -101,7 +101,7 @@
       }
 
    });
-   
+
 
    searchform_reposition();
 
@@ -136,9 +136,9 @@
 						    $(".dropdown-toggle").dropdown("active");
 						  });
 						});
-						
-	
-     
+
+
+
   /************** Search ****************/
 		$(function() {
 	    var button = $('#loginButton');
@@ -149,14 +149,13 @@
 	        box.toggle();
 	        button.toggleClass('active');
 	    });
-	    form.mouseup(function() { 
+	    form.mouseup(function() {
 	        return false;
 	    });
-	    $(this).mouseup(function(login) {
-	        if(!($(login.target).parent('#loginButton').length > 0)) {
-	            button.removeClass('active');
-	            box.hide();
-	        }
-	    });
+	    // $(this).mouseup(function(login) {
+	    //     if($(login.target).parent('#loginButton').length === 0) {
+	    //         button.removeClass('active');
+	    //         box.hide();
+	    //     }
+	    // });
 	});
-	
