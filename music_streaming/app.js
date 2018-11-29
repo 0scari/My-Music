@@ -15,9 +15,11 @@ const hbs = require('express-handlebars')
 app.engine('hbs', hbs({
     extname: 'hbs',
     defaultLayout: 'home',
-    layoutsDir: __dirname + '../website/views/layouts/',
-    partialsDir: __dirname + '../website/views/partials/'
+    layoutsDir: __dirname + '/../website/views/layouts/',
+    partialsDir: __dirname + '/../website/views/partials/'
 }))
+app.set('views', path.join(__dirname, '../website/views'));
+app.set('view engine', 'hbs');
 
 app.use(logger('dev'))
 app.use(express.json())
@@ -31,7 +33,7 @@ app.use(sassMiddleware({
 }))
 app.use(express.static(path.join(__dirname, '../website/public')))
 
-app.use('music-management', require('./routes'))
+app.use('/music-streaming', require('./routes'))
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -49,21 +51,21 @@ app.use((err, req, res, next) => {
 	res.render('error')
 })
 
-const MongoClient = require('mongodb').MongoClient
-const test = require('assert')
-const url = 'mongodb://localhost:27017'
-const dbName = 'songs'
-// Connect using MongoClient
-MongoClient.connect(url, (err, client) => {
-	// Use the admin database for the operation
-	const adminDb = client.db(dbName).admin()
-	// List all the available databases
-	adminDb.listDatabases((err, dbs) => {
-		test.equal(null, err)
-		test.ok(dbs.databases.length > 0)
-		client.close()
-	})
-	console.log('Mongo connection OK!') // TODO log
-})
+// const MongoClient = require('mongodb').MongoClient
+// const test = require('assert')
+// const url = 'mongodb://localhost:27017'
+// const dbName = 'songs'
+// // Connect using MongoClient
+// MongoClient.connect(url, (err, client) => {
+// 	// Use the admin database for the operation
+// 	const adminDb = client.db(dbName).admin()
+// 	// List all the available databases
+// 	adminDb.listDatabases((err, dbs) => {
+// 		test.equal(null, err)
+// 		test.ok(dbs.databases.length > 0)
+// 		client.close()
+// 	})
+// 	console.log('Mongo connection OK!') // TODO log
+// })
 
 module.exports = app

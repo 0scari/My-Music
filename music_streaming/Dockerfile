@@ -11,7 +11,8 @@ COPY . .
 RUN rm -r node_modules
 WORKDIR /usr/src/app
 
-RUN npm install
+#COPY ../docker_mm_nm/ ./node_modules
+#RUN npm install
 
 EXPOSE 3000
 EXPOSE 9229

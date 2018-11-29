@@ -2,7 +2,7 @@ version: '3'
 
 services:
   music-management:
-    build: ./music-management
+    build: music_streaming
     ports:
     - "3000:3000"
     - "27017:27017"
@@ -10,9 +10,10 @@ services:
     volumes:
     - /Users/oskarspozdnakovs/pozdnako-y3/website:/usr/src/website
     - mongoData:/data/db
+    - /Users/oskarspozdnakovs/pozdnako-y3/docker_mm_nm:/usr/src/app/node_modules
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: secret
+      MONGO_CONN_STR: "mongodb://localhost:27017/songs"
 
 volumes:
   mongoData:
+  node_modules:
