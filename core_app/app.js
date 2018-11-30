@@ -34,7 +34,11 @@ app.use(sassMiddleware({
 }))
 app.use(express.static(path.join(__dirname, '../website/public')))
 
-app.use('/', require('./routes'))
+app.use('/', require('./controllers/playlist_controller'))
+
+app.get('/', async(req, res) => {
+    res.render('home_body')
+})
 
 // catch 404 and forward to error handler
 // app.use((req, res, next) => {
@@ -70,19 +74,5 @@ app.use('/', require('./routes'))
 // })
 
 
-// app.mySql = new Sequelize('database', 'root', 'passw', {
-//     host: 'localhost',
-//     port: 3306,
-//     dialect: 'mysql',
-//
-//     pool: {
-//         max: 5,
-//         min: 0,
-//         acquire: 30000,
-//         idle: 10000
-//     },
-//     // http://docs.sequelizejs.com/manual/tutorial/querying.html#operators
-//     operatorsAliases: false
-// })
 
 module.exports = app

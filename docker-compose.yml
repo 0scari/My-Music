@@ -24,16 +24,12 @@ services:
     volumes:
       - /Users/oskarspozdnakovs/pozdnako-y3/website:/usr/src/website
       - /Users/oskarspozdnakovs/pozdnako-y3/docker_ca_nm:/usr/src/app/node_modules
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
-        window: 25s
 
   sqlDB:
     image: mysql:8.0
     container_name: MySql
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: 'passw'
 
