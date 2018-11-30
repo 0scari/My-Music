@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "startMySql": "nohup /usr/local/bin/docker-entrypoint.sh mysqld &",
+    "start": "npm run startMySql && node --inspect=0.0.0.0 ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",

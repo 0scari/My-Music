@@ -1,4 +1,4 @@
-FROM mongo:4.1
+FROM mysql:8.0
 
 RUN apt-get update -y
 RUN apt-get install -y curl
@@ -11,10 +11,9 @@ COPY . .
 RUN rm -r node_modules
 WORKDIR /usr/src/app
 
-#COPY ../docker_mm_nm/ ./node_modules
-#RUN npm install
-
 EXPOSE 3000
 EXPOSE 9229
 
-CMD [ "npm", "start" ]
+CMD ["npm", "start"]
+
+
