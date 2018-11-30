@@ -24,8 +24,7 @@ p {margin: 0;}
 
 .player-main {
     position: relative;
-    width: 100%;
-    min-width: 472px;
+    width: inherit;
     padding: 24px;
     box-sizing: border-box;
     background-color: rgba(230, 219, 241, 0.8);
@@ -37,11 +36,12 @@ p {margin: 0;}
 .main-current .current-keyvisual {
     position: relative;
     display: inline-block;
+
 }
 .main-current .current-keyvisual img {
     position: relative;
     z-index: 2;
-    width: 132px;
+    width: 264px;
     height: auto;
     border-radius: 4px;
 }
@@ -1867,9 +1867,6 @@ img.media-object {
     font-size: 2em;
     font-weight: 600;
     margin-bottom: 1em;
-}
-.inner-content.single {
-    padding-top: 1.2em;
 }
 .coment-form  {
 	    margin: 3em 0;

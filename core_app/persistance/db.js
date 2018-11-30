@@ -19,8 +19,8 @@ const db = {}
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
-db.users = require('./persistance/models/user')(sequelize, Sequelize)
-db.playlists = require('./persistance/models/playlist')(sequelize, Sequelize)
+db.users = require('./models/user')(sequelize, Sequelize)
+db.playlists = require('./models/playlist')(sequelize, Sequelize)
 //
 //
 // const User = seq.import('../persistance/models/user')

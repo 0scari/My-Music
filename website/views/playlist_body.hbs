@@ -1,10 +1,18 @@
+{{> add_song_modal }}
+
 <div id="page-wrapper">
 
     <div class="inner-content single">
         <!--/music-right-->
 
         <div class="tittle-head">
-            <h3 class="tittle">Single <span class="new">Page</span></h3>
+            <h3 class="tittle"> {{ name }}
+                <span>
+                    {{!--<button class="btn btn-primary">Add Song</button>--}}
+                    <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#myModal5">Add Song</a>
+                    <button class="btn btn-primary">Image</button>
+                </span>
+            </h3>
             <div class="clearfix"> </div>
         </div>
         <div class="single_left">
@@ -12,6 +20,15 @@
             <div class="video-main">
                 <div class="video-record-list">
                     <div class="music-player">
+                        <div class="player-main">
+                            <div class="main-current">
+                                <div class="row">
+                                    <div class="center-block current-keyvisual">
+                                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329679/music-player-freebie-photo.png" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <ul class="player-list">
                             <li>
                                 <img
