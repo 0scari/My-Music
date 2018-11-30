@@ -6,6 +6,7 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const sassMiddleware = require('node-sass-middleware')
+const Sequelize = require('sequelize');
 
 const app = express()
 
@@ -66,6 +67,22 @@ app.use('/', require('./routes'))
 // 		client.close()
 // 	})
 // 	console.log('Mongo connection OK!') // TODO log
+// })
+
+
+// app.mySql = new Sequelize('database', 'root', 'passw', {
+//     host: 'localhost',
+//     port: 3306,
+//     dialect: 'mysql',
+//
+//     pool: {
+//         max: 5,
+//         min: 0,
+//         acquire: 30000,
+//         idle: 10000
+//     },
+//     // http://docs.sequelizejs.com/manual/tutorial/querying.html#operators
+//     operatorsAliases: false
 // })
 
 module.exports = app

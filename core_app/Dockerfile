@@ -1,4 +1,4 @@
-FROM mysql:8.0
+FROM ubuntu:xenial
 
 RUN apt-get update -y
 RUN apt-get install -y curl
