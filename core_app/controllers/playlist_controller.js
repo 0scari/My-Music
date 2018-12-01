@@ -39,10 +39,15 @@ router.get('/playlist/:id', async(req, res) => {
 })
 
 router.post('/playlist', async(req, res) => {
-    db.playlists.create({name: req.body.name, userId: 1}).then(
-        playlist => res.status(status.CREATED).send({id: playlist.get('id')}),
-        err => res.status(status.BAD_REQUEST).send(err)
-    )
+    try {
+        if (req.body.name) {
+            const playlist = await playlistService.store(null, req.body.name)
+            res.status(status.CREATED).send({id: playlist.get('id')})
+        }
+        res.status(status.BAD_REQUEST).send()
+    } catch (e) {
+        res.status(status.INTERNAL_SERVER_ERROR).send('Huston got a problem!')
+    }
 })
 
 router.put('/playlist/:id', async(req, res) => {
