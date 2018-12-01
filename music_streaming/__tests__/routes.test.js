@@ -69,7 +69,7 @@ describe('GET /music_streaming/:id', () => {
     afterEach(() => {
         jest.restoreAllMocks();
     })
-    test('check if 200 returned when ', async done => {
+    test('check if 200 returned when requesting a stream', async done => {
         const ss = require('../services/song-service')
         const param = 'song1'
         // jest.spyOn(ss, 'openReadStream')
