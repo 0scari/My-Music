@@ -17,6 +17,7 @@ afterAll(() => {
 describe('POST /music_streaming/song-upload', () => {
 
     test('check if 202 returned when sending file', async done => {
+        //expect.assertions(2)
         await request(server).post('/music-streaming/song-upload')
             .field('title', 'ph')
             .field('artist', 'ph')
