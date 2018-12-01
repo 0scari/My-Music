@@ -57,3 +57,26 @@ describe('POST /playlist', () => {
         done()
     })
 })
+
+describe('PUT /playlist/:id', () => {
+    test('check if 202 when everything supplied', async done => {
+        await request(server).put('/playlist/1')
+            .field('name', 'cool playlist')
+            .attach('file', '__tests__/Screen Shot 2017-12-25 at 18.29.47.png')
+            .expect(status.ACCEPTED)
+        done()
+    })
+    test('check if 400 when nothing supplied', async done => {
+        await request(server).put('/playlist/1')
+            .field('name', '')
+            .expect(status.BAD_REQUEST)
+        done()
+    })
+    test('check if 500 returned when service throws', async done => {
+        await request(server).put('/playlist/1')
+            .field('name', 'throw')
+            .attach('file', '__tests__/Screen Shot 2017-12-25 at 18.29.47.png')
+            .expect(status.INTERNAL_SERVER_ERROR)
+        done()
+    })
+})
