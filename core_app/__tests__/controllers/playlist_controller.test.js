@@ -21,6 +21,20 @@ describe('GET /playlists', () => {
         done()
     })
 })
+
+describe('GET /playlist:id', () => {
+    test('check if view returned if id given', async done => {
+        await request(server).get('/playlist/1')
+            .expect(status.OK)
+        done()
+    })
+    test('check if 400 if id invalid', async done => {
+        await request(server).get('/playlist/safd')
+            .expect(status.BAD_REQUEST)
+        done()
+    })
+})
+
 describe('POST /playlist', () => {
     test('check if 201 returned when request is OK', async done => {
         const resp = await request(server).post('/playlist')
