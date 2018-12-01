@@ -34,11 +34,23 @@ router.post('/playlist', async(req, res) => {
 })
 
 router.put('/playlist/:id', async(req, res) => {
-    res.render('playlist_body')
-})
-
-router.delete('/playlist/:id', async(req, res) => {
-    res.render('playlist_body')
+    new multiparty.Form({maxFieldSize: 15000, maxFields: 2, autoFiles: true})
+        .parse(req, async (err, fields, files) => {
+            if (!fields['name'][0] && !Object.keys(files).length)
+                res.status(status.BAD_REQUEST).send('No changes were given for playlist')
+            try {
+                let imgData = null
+                if (files.file[0].originalFilename) {
+                    imgData = fs.readFileSync(files.file[0].path)
+                    fs.writeFileSync(process.env.IMG_STORG_PATTERN + req.params.id + '.png', imgData)
+                }
+                await playlistService.store(req.params.id, fields['name'][0], imgData)
+                res.status(status.ACCEPTED).send()
+            } catch (e) {
+                res.status(status.INTERNAL_SERVER_ERROR).send()
+            }
+        })
 })
 
 module.exports = router
+

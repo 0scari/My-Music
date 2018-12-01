@@ -24,6 +24,8 @@ services:
     volumes:
       - /Users/oskarspozdnakovs/pozdnako-y3/website:/usr/src/website
       - /Users/oskarspozdnakovs/pozdnako-y3/docker_ca_nm:/usr/src/app/node_modules
+    environment:
+      IMG_STORG_PATTERN: '/usr/src/website/public/images/playlist-'
 
   sqlDB:
     image: mysql:8.0

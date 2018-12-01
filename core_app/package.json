@@ -6,6 +6,16 @@
     "test": "jest --coverage ",
     "start": "cd persistance && ../node_modules/.bin/sequelize db:create && ../node_modules/.bin/sequelize db:migrate && cd .. && node --inspect=0.0.0.0 ./bin/www"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/coverage/**",
+      "!**/bin/www/**",
+      "!**app.js**",
+      "!**/persistance/**"
+    ]
+  },
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",

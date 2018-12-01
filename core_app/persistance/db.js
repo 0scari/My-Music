@@ -21,10 +21,6 @@ db.Sequelize = Sequelize
 
 db.users = require('./models/user')(sequelize, Sequelize)
 db.playlists = require('./models/playlist')(sequelize, Sequelize)
-//
-//
-// const User = seq.import('../persistance/models/user')
-// const Playlist = seq.import('../persistance/models/playlist')
 
 db.users.hasMany(db.playlists)
 db.playlists.belongsTo(db.users)
