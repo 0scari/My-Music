@@ -3,24 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "devDependencies": {
-    "eslint": "^5.8.0",
-    "jest": "^23.6.0"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "verbose": true,
-    "coverageThreshold": {
-      "global": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100,
-        "statements": -10
-      }
-    },
-    "collectCoverageFrom": [
-      "**/*.{js,jsx}",
-      "!**/node_modules/**",
-      "!**/coverage/**"
-    ]
+    "eslint": "^5.8.0"
   }
 }

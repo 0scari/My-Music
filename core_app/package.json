@@ -3,7 +3,26 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "test": "jest --coverage ",
     "start": "cd persistance && ../node_modules/.bin/sequelize db:create && ../node_modules/.bin/sequelize db:migrate && cd .. && node --inspect=0.0.0.0 ./bin/www"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": -10
+      }
+    },
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/coverage/**",
+      "!**/persistance/**"
+    ]
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -21,6 +40,7 @@
     "multiparty": "^4.2.1"
   },
   "devDependencies": {
-    "supertest": "3.3.0"
+    "supertest": "3.3.0",
+    "jest": "^23.6.0"
   }
 }

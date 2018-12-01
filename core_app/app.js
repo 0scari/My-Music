@@ -6,7 +6,6 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const sassMiddleware = require('node-sass-middleware')
-const Sequelize = require('sequelize');
 
 const app = express()
 
@@ -19,8 +18,8 @@ app.engine('hbs', hbs({
     layoutsDir: __dirname + '/../website/views/layouts/',
     partialsDir: __dirname + '/../website/views/partials/'
 }))
-app.set('views', path.join(__dirname, '../website/views'));
-app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, '../website/views'))
+app.set('view engine', 'hbs')
 
 app.use(logger('dev'))
 app.use(express.json())
@@ -72,7 +71,6 @@ app.get('/', async(req, res) => {
 // 	})
 // 	console.log('Mongo connection OK!') // TODO log
 // })
-
 
 
 module.exports = app
