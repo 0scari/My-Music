@@ -2161,7 +2161,7 @@ border-radius: 4px;
 }
 /*---browse-grid-----*/
 .browse-grid {
-   width: 16.66%;
+    width: 16.66%;
     float: left;
     text-align: center;
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.35);
