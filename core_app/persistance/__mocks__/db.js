@@ -3,6 +3,7 @@
 const db = jest.genMockFromModule('../db')
 
 db.playlists = {
+    destroy: (param) => param.where.id === 1,
     findOne: () => true,
     findById: () => true,
     upsert: (pll) => {

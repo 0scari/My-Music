@@ -80,3 +80,16 @@ describe('PUT /playlist/:id', () => {
         done()
     })
 })
+
+describe('DELETE /playlist/:id', () => {
+    test('check if 200 when id input valid', async done => {
+        await request(server).delete('/playlist/1')
+            .expect(status.OK)
+        done()
+    })
+    test('check if 200 when id input valid', async done => {
+        await request(server).delete('/playlist/aas')
+            .expect(status.NOT_FOUND)
+        done()
+    })
+})

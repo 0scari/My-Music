@@ -42,4 +42,12 @@ describe('Playlist service test suit', () => {
         done()
     })
 
+    test('test if .delete() calls playlists.destroy() correctly', async done => {
+        jest.spyOn(db.playlists, 'destroy')
+        ps.delete(1)
+        expect(db.playlists.destroy).toHaveBeenCalledTimes(1)
+        expect(db.playlists.destroy.mock.calls[0][0].where.id).toBe(1)
+        done()
+    })
+
 })

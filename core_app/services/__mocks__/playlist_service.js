@@ -14,4 +14,7 @@ ps.find = id => {
     else
         return false
 }
+
+ps.delete = async id => id === '1'
+
 module.exports = ps
