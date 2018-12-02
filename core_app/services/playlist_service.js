@@ -18,3 +18,9 @@ module.exports.getAllUserPlaylists = async(userId) => {
     return user.getPlaylists()
 }
 
+module.exports.delete = async id => db.playlists.destroy({
+        where: {
+            id: id
+        }
+    })
+

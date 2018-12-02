@@ -52,5 +52,13 @@ router.put('/playlist/:id', async(req, res) => {
         })
 })
 
+router.delete('/playlist/:id', async(req, res) => {
+    const playlist = await playlistService.delete(req.params.id)
+    if (playlist)
+        res.status(status.OK).send()
+    else
+        res.status(status.NOT_FOUND).send()
+})
+
 module.exports = router
 

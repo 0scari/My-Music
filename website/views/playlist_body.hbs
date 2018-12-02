@@ -12,6 +12,20 @@
                     {{!--<button class="btn btn-primary">Add Song</button>--}}
                     <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#editPlaylistModal">Edit</a>
                     <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#myModal5">Add Song</a>
+                    <a class="btn btn-danger" id="deletePlaylist" href="#">Delete</a>
+                    <script>
+                        $(document).ready(() => {
+                            $('#deletePlaylist').click(e => {
+                                e.preventDefault()
+                                $.ajax({
+                                    type: 'DELETE',
+                                    url: '/playlist/{{playlist.id}}',
+                                }).then(
+                                        () => $(location).attr('href', '/playlists')
+                                )
+                            })
+                        })
+                    </script>
                 </span>
             </h3>
             <div class="clearfix"> </div>
