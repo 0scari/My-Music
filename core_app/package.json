@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "jest --coverage ",
+    "tests": "jest --coverage ",
     "start": "cd persistance && ../node_modules/.bin/sequelize db:create && ../node_modules/.bin/sequelize db:migrate && cd .. && node --inspect=0.0.0.0 ./bin/www"
   },
   "jest": {

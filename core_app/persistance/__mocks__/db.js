@@ -13,4 +13,6 @@ db.playlists = {
     }
 }
 
+db.users.findById = () => ({getPlaylists: () => true})
+
 module.exports = db

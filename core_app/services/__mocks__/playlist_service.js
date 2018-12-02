@@ -1,8 +1,8 @@
 'use strict'
 
 const ps = jest.genMockFromModule('../playlist_service')
-ps.store = async(playlistId, name, imgData) => {
-    if (name === 'throw')
+ps.store = async(playlist) => {
+    if (playlist.name === 'throw')
         throw new Error()
     else
     return {get: (id) => id}

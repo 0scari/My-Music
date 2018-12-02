@@ -15,14 +15,12 @@ describe('Playlist service test suit', () => {
         jest.spyOn(db.playlists, 'upsert')
 
         try {
-            await ps.store(1, 2 ,3)
+            await ps.store({id: 1})
         } catch (e) {}
         expect(db.playlists.findOne).toHaveBeenCalledTimes(1)
         expect(db.playlists.upsert).toHaveBeenCalledTimes(1)
 
         expect(db.playlists.upsert.mock.calls[0][0].id).toBe(1)
-        expect(db.playlists.upsert.mock.calls[0][0].name).toBe(2)
-        expect(db.playlists.upsert.mock.calls[0][0].imageData).toBe(3)
 
         done()
     })
@@ -30,10 +28,18 @@ describe('Playlist service test suit', () => {
     test('check if throws when told to, lol', async done => {
         jest.spyOn(db.playlists, 'findOne').mockImplementation(() => true)
         try {
-            await ps.store(2, 2 ,3)
+            await ps.store('throw')
         } catch (e) {
             done()
         }
+    })
+
+    test('test if getAllUserPlaylists executes', async done => {
+        jest.spyOn(db.users, 'findById')
+        try {
+            await ps.getAllUserPlaylists(1)
+        } catch (e) {}
+        done()
     })
 
 })
