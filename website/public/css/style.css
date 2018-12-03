@@ -863,7 +863,6 @@ ul.nav li a span {
   transition: width 0.3s;
   -webkit-backface-visibility: hidden;
   z-index: 999;
-  border-left: 1px solid #000;
     top:0%;
 }
 .sb-search-input {
@@ -917,7 +916,7 @@ ul.nav li a span {
 	-webkit-appearance: none;
 }
 .sb-icon-search {
-  background: #111 url('../images/search.png') no-repeat 23px 20px;
+  background: #3fb49d;
   z-index: 90;
      width:70px;
     height:65px;
@@ -1316,7 +1315,6 @@ i.arrow {
 #loginBox {
     width: 400px;
     position:absolute;
-    top: 56px;
     right: 4px;
     display:none;
     z-index:29;
@@ -1580,7 +1578,7 @@ span.new{
 		font-size: 1.4em;
 	}
 	div.jp-type-playlist div.jp-playlist a {
-    color: #999!important;
+    color: #999;
 	}
 div.jp-type-playlist div.jp-playlist a:hover {
     color:#fff!important;

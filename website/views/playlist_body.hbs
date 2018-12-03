@@ -1,6 +1,8 @@
 {{> add_song_modal }}
 {{> edit_playlist_modal }}
 
+<script src="/my-js/playlist_body.js"></script>
+
 <div id="page-wrapper">
 
     <div class="inner-content single">
@@ -13,24 +15,6 @@
             <script src="https://use.fontawesome.com/ae8d15b2f5.js"></script>
             <div class="container">
                 <div class="row">
-                    {{!--<div class="col-xs-offset 1 col-xs-11 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6" style="margin-left: 0!important;">--}}
-                        {{!--<div class="btn-toolbar" role="toolbar">--}}
-                            {{!--<div class="btn-group btn-group-justified" role="group">--}}
-                                {{!--<div class="btn-group" role="group">--}}
-                                    {{!--<button id="list" class="btn btn-primary" data-original-title="Refreshr"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>--}}
-                                {{!--</div>--}}
-                                {{!--<div class="btn-group" role="group">--}}
-                                    {{!--<button id="new" class="btn btn-primary" data-original-title="New"><i class="fa fa-plus fa-lg" aria-hidden="true"></i></button>--}}
-                                {{!--</div>--}}
-                                {{!--<div class="btn-group" role="group">--}}
-                                    {{!--<button id="passreset" class="btn btn-primary" data-original-title="Password Reset"><i class="fa fa-key fa-lg" aria-hidden="true"></i></button>--}}
-                                {{!--</div>--}}
-                                {{!--<div class="btn-group" role="group">--}}
-                                    {{!--<button id="desact" class="btn btn-primary" data-original-title="Deactivate"><i class="fa fa-low-vision fa-lg" aria-hidden="true"></i></button>--}}
-                                {{!--</div>--}}
-                            {{!--</div>--}}
-                        {{!--</div>--}}
-                    {{!--</div>--}}
 
                 </div>
             </div>
@@ -41,7 +25,7 @@
                 <div class="video-record-list">
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
                         <div class="btn-group" role="group">
-                            <button type="button" class="pc btn btn-secondary">
+                            <button id="play" type="button" class="pc btn btn-secondary">
                                 <i class="fa fa-play fa-lg" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -87,7 +71,7 @@
 
                         <ul class="player-list songList">
                             {{#each songs}}
-                                <li id="{{ this.dataValues.fileName}}">
+                                <li>
                                     <img
                                             class="list-cover"
                                             src="/images/song-artwork.png"
@@ -99,6 +83,101 @@
                                 </li>
                             {{/each}}
                         </ul>
+                        <script>
+                            var songs = []
+                            {{#each songs}}
+                                songs[{{@index}}] = {}
+                                songs[{{@index}}].fileName = '{{ this.dataValues.fileName}}'
+                                songs[{{@index}}].title = '{{ this.dataValues.title}}'
+                                songs[{{@index}}].artist = '{{ this.dataValues.artist}}'
+                            {{/each}}
+
+                            $(document).ready(() =>{
+                                $('#forward').click(e => {
+                                    PlaybackManager.forward()
+                                })
+
+                                $('#backward').click(e => {
+                                    PlaybackManager.backward()
+                                })
+
+                                $('#play').on('click',function (e) {
+                                    PlaybackManager.currSongI = 0
+                                    e.preventDefault()
+                                    $('#playlist').empty()
+                                    songs.forEach(song =>{
+                                        $('#playlist').append(
+                                            '<div>\n' +
+                                            `    <a name="${song.fileName}" class="jp-playlist-item" tabindex="0">${song.artist + ' - ' + song.title}</a>` +
+                                            '</div>'
+                                        )
+                                    })
+                                    $('.jp-playlist-item').on('click', function () {
+                                        $('.jp-playlist-item').css('color', '')
+                                        $(this).css('color', '#ea57a3')
+                                        changeAudioSource($(this).attr('name'))
+                                    })
+                                    PlaybackManager.playFirst()
+                                })
+
+                                $('#shufflePlay').click(function () {
+                                    PlaybackManager.shuffleMode = !PlaybackManager.shuffleMode
+                                    if (PlaybackManager.shuffleMode)
+                                        $(this).find('i').css('color', '#e22f8d')
+                                    else
+                                        $(this).find('i').css('color', 'white')
+
+                                })
+                            })
+
+                            function changeAudioSource(id) {
+                                let audio = $("#audio-player");
+                                audio.attr("src", "http://localhost:3001/" + id);
+                                /****************/
+                                audio[0].load();//suspends and restores all audio element
+                                //audio[0].play(); changed based on Sprachprofi's comment below
+                                audio[0].oncanplaythrough = audio[0].play();
+                                /****************/
+                            }
+
+                            class PlaybackManager {
+                                static backward() {
+                                    PlaybackManager._nextSong(- PlaybackManager._getX())
+                                }
+
+                                static forward() {
+                                    PlaybackManager._nextSong(PlaybackManager._getX())
+                                }
+
+                                static _getX() {
+                                    let x
+                                    if (!PlaybackManager.shuffleMode) {
+                                        x = 1
+                                    } else {
+                                        x = Math.floor((Math.random() * songs.length -1) + PlaybackManager.currSongI)
+                                    }
+                                    return x
+                                }
+
+                                static _nextSong(x) {
+                                    PlaybackManager.currSongI = (PlaybackManager.currSongI + x) % songs.length
+                                    if (PlaybackManager.currSongI < 0)
+                                        PlaybackManager.currSongI = songs.length + PlaybackManager.currSongI
+
+                                    $('.jp-playlist-item').css('color', '')
+                                    $($('#playlist').children()[PlaybackManager.currSongI])
+                                            .find(':first-child').css('color', '#ea57a3')
+                                    changeAudioSource(songs[PlaybackManager.currSongI].fileName)
+                                }
+                                static playFirst() {
+                                    $($('#playlist').children()[0])
+                                            .find(':first-child').css('color', '#ea57a3')
+                                    changeAudioSource(songs[0].fileName)
+                                }
+                            }
+                            PlaybackManager.shuffleMode = false
+
+                        </script>
                     </div>
 
                 </div>

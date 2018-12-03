@@ -22,8 +22,9 @@ router.post('/song-upload', async(req, res) => {
 
 router.get('/:id', async(req, res) => {
     try {
+        res.set('content-type', 'audio/mp3')
         await songService.openReadStream(res, req.params.id)
-        res.end()
+        res.send()
     } catch (e) {
         res.status(status.BAD_REQUEST).send(e)
     }

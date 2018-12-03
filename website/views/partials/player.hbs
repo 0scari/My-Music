@@ -6,27 +6,16 @@
     <!--notification menu start -->
     <div class="menu-right">
         <div class="profile_details">
-            {{!--<div class="col-md-4 serch-part">--}}
-            {{!--<div id="sb-search" class="sb-search">--}}
-            {{!--<form action="#" method="post">--}}
-
-            {{!--<input class="sb-search-input" placeholder="Search" type="search" name="search" id="search">--}}
-            {{!--<input class="sb-search-submit" type="submit" value="">--}}
-            {{!--<span class="sb-icon-search"> </span>--}}
-            {{!--</form>--}}
-            {{!--</div>--}}
-            {{!--</div>--}}
-            {{!--<!-- search-scripts -->--}}
-            {{!--<script src="js/classie.js"></script>--}}
-            {{!--<script src="js/uisearch.js"></script>--}}
-            {{!--<script>--}}
-            {{!--new UISearch( document.getElementById( 'sb-search' ) );--}}
-            {{!--</script>--}}
-            {{!--<!-- //search-scripts -->--}}
-            <!---->
+            <div class="col-md-4 serch-part">
+                <div id="shufflePlay" class="sb-search">
+                    <span class="sb-icon-search">
+                        <i class="fa fa-random fa-lg" aria-hidden="true" style="color: white"></i>
+                    </span>
+                </div>
+            </div>
             <div class="col-md-4 player">
                 <div class="audio-player">
-                    <audio id="audio-player">
+                    <audio preload="auto" autobuffer id="audio-player">
                         <source id="audio-player-src" src="http://localhost:3001/23731ba2e1786e56bfe68a933b684a48cf7bcf299afdca87f598cacb938c6fb9" type="audio/mpeg">
                     </audio>
                 </div>
@@ -51,8 +40,8 @@
 
                 <!--//-->
                 <ul class="next-top">
-                    <li><a class="ar" href="#"> <img src="/images/arrow.png" alt=""/></a></li>
-                    <li><a class="ar2" href="#"><img src="/images/arrow2.png" alt=""/></a></li>
+                    <li><a id="backward" class="ar" href="#"> <img src="/images/arrow.png" alt=""/></a></li>
+                    <li><a id="forward" class="ar2" href="#"><img src="/images/arrow2.png" alt=""/></a></li>
                 </ul>
             </div>
             <div class="col-md-4 login-pop">
@@ -62,7 +51,8 @@
                             <div id="jp_container_1" class="jp-video jp-video-270p" role="application" aria-label="media player">
                                 <div class="jp-type-playlist">
                                     <div class="jp-playlist">
-                                        <ul style="display: block;"><li class="jp-playlist-current"><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item jp-playlist-current" tabindex="0">1. Ellie-Goulding</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">2. Mark-Ronson-Uptown</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">3. Ellie-Goulding</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">4. Maroon-Sugar</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">5. Pharrell-Williams</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">6. Ellie-Goulding</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">7. Pharrell-Williams</a></div></li></ul>
+                                        <ul id="playlist" style="display: block;">
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
