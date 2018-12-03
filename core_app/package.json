@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "tests": "jest --coverage ",
+    "tests": "jest --coverage --runInBand",
     "start": " node --inspect=0.0.0.0 ./bin/www"
   },
   "jest": {

@@ -35,6 +35,7 @@ app.use(sassMiddleware({
 app.use(express.static(path.join(__dirname, '../website/public')))
 
 app.use('/', require('./controllers/playlist_controller'))
+app.use('/', require('./controllers/song_controller'))
 
 app.get('/', async(req, res) => {
     res.render('home_body')
@@ -55,24 +56,6 @@ app.get('/', async(req, res) => {
 // 	res.status(err.status || 500)
 // 	res.render('error')
 // })
-
-// const MongoClient = require('mongodb').MongoClient
-// const test = require('assert')
-// const url = 'mongodb://localhost:27017'
-// const dbName = 'songs'
-// // Connect using MongoClient
-// MongoClient.connect(url, (err, client) => {
-// 	// Use the admin database for the operation
-// 	const adminDb = client.db(dbName).admin()
-// 	// List all the available databases
-// 	adminDb.listDatabases((err, dbs) => {
-// 		test.equal(null, err)
-// 		test.ok(dbs.databases.length > 0)
-// 		client.close()
-// 	})
-// 	console.log('Mongo connection OK!') // TODO log
-// })
-
 
 
 module.exports = app

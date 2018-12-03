@@ -4,5 +4,6 @@
 
 module.exports.readFileSync = () => true
 module.exports.writeFileSync = () => true
+module.exports.createReadStream = jest.fn()
 
 // module.exports = fs
