@@ -130,16 +130,6 @@
                                 })
                             })
 
-                            function changeAudioSource(id) {
-                                let audio = $("#audio-player");
-                                audio.attr("src", "http://localhost:3001/" + id);
-                                /****************/
-                                audio[0].load();//suspends and restores all audio element
-                                //audio[0].play(); changed based on Sprachprofi's comment below
-                                audio[0].oncanplaythrough = audio[0].play();
-                                /****************/
-                            }
-
                             class PlaybackManager {
                                 static backward() {
                                     PlaybackManager._nextSong(- PlaybackManager._getX())
@@ -191,7 +181,7 @@
                     <a href="#">
                         <img class="media-object" src="/images/c1.jpg" alt="">
                     </a>
-                    <h5><a href="#">Username</a></h5>
+                    <h5><a href="#">Kelly</a></h5>
                 </div>
                 <div class="media-body response-text-right">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
@@ -205,7 +195,7 @@
                             <a href="#">
                                 <img class="media-object" src="/images/c2.jpg" alt="">
                             </a>
-                            <h5><a href="#">Username</a></h5>
+                            <h5><a href="#">John</a></h5>
                         </div>
                         <div class="media-body response-text-right">
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
@@ -225,7 +215,7 @@
                     <a href="#">
                         <img class="media-object" src="/images/c3.jpg" alt="">
                     </a>
-                    <h5><a href="#">Username</a></h5>
+                    <h5><a href="#">Alice</a></h5>
                 </div>
                 <div class="media-body response-text-right">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
@@ -242,7 +232,7 @@
                     <a href="#">
                         <img class="media-object" src="/images/c4.jpg" alt="">
                     </a>
-                    <h5><a href="#">Username</a></h5>
+                    <h5><a href="#">Peter</a></h5>
                 </div>
                 <div class="media-body response-text-right">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
@@ -256,7 +246,7 @@
                             <a href="#">
                                 <img class="media-object" src="/images/c5.jpg" alt="">
                             </a>
-                            <h5><a href="#">Username</a></h5>
+                            <h5><a href="#">Jennifer</a></h5>
                         </div>
                         <div class="media-body response-text-right">
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
@@ -276,7 +266,7 @@
                     <a href="#">
                         <img class="media-object" src="/images/c6.jpg" alt="">
                     </a>
-                    <h5><a href="#">Username</a></h5>
+                    <h5><a href="#">Sam</a></h5>
                 </div>
                 <div class="media-body response-text-right">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available,
