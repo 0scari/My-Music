@@ -1,7 +1,6 @@
-'use strict';
+'use strict'
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Songs', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Songs', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -24,13 +23,22 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
+      fileName: {
+          type: Sequelize.STRING
+      },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      playlistId: {
+          type: Sequelize.INTEGER,
+          references: {
+              model: 'Playlists', // name of Target model
+              key: 'id', // key in Target model that we're referencing
+          },
+          onUpdate: 'CASCADE',
+          onDelete: 'SET NULL',
       }
-    });
-  },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Songs');
-  }
-};
+    }),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('Songs')
+}
