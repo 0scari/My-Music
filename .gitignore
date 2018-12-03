@@ -2,3 +2,7 @@ node_modules/
 .idea/
 package-lock.json
 docker_mm_nm/
+SandBox.html
+docker_ca_nm/
+core_app/coverage/
+music_streaming/coverage/

@@ -11,10 +11,7 @@ COPY . .
 RUN rm -r node_modules
 WORKDIR /usr/src/app
 
-#COPY ../docker_mm_nm/ ./node_modules
-#RUN npm install
-
-EXPOSE 3000
-EXPOSE 9229
+EXPOSE 3001
+EXPOSE 9228
 
 CMD [ "npm", "start" ]

@@ -31,7 +31,7 @@ router.post('/song-upload', async(req, res) => {
 })
 
 // router.get('/', async(req, res) => {
-//     res.render('home')
+//     res.render('test')
 // })
 
 router.get('/:id', async(req, res) => {
