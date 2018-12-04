@@ -30,5 +30,14 @@ router.post('/song', async(req, res) => {
         })
 })
 
+router.get('/songs', async(req, res) => {
+    const songs = await songService.allSongsForUser(1)
+    res.render('songs_body', {songs: songs})
+})
+
+router.get('/login', async(req, res) => {
+    res.render('blank', {layout: 'login.hbs'})
+})
+
 module.exports = router
 

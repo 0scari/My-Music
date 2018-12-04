@@ -8,4 +8,6 @@ ss.store = jest.fn(s => {
     return true
 })
 
+ss.allSongsForUser = jest.fn()
+
 module.exports = ss
