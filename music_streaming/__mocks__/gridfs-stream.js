@@ -1,15 +1,16 @@
 'use strict'
 
 const mockedStream = require('stream').Readable()
-mockedStream._read = function(size) { /* do nothing */ };
+mockedStream._read = jest.fn()
 
+const writable = require('stream').Writable()
+writable._write = jest.fn()
 
-const Grid = function(db, mongo) {
- return {
-     createWriteStream: () => {},
+const Grid = () => ({
+     createWriteStream: () => writable,
      createReadStream: () => mockedStream
- }
-}
+ })
 
+module.exports
 module.exports = Grid
 

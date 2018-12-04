@@ -7,12 +7,12 @@
             <div class="modal-body modal-spa">
                 <div class="sign-grids">
                     <div class="sign-right" style="width: 300px">
-                        <form action="#" method="post">
+                        <form action="#" id="addSongForm" autocomplete="off">
                             <h3> What song will it be? </h3>
-                            <input type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
-                            <input type="text" value="Mobile number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mobile number';}" required="">
-                            <input type="text" value="Email id" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email id';}" required="">
-                            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" style="padding-top: 10px">
+                            <input type="text" name="title" value="Title" onfocus="this.value = '';" onblur="if (this.value == 'Title') {this.value = '';}" required>
+                            <input type="text" name="artist" value="Artist" onfocus="this.value = '';" onblur="if (this.value == 'Artist') {this.value = '';}" required>
+                            <input type="text" name="album" value="Album" onfocus="this.value = '';" onblur="if (this.value == 'Album') {this.value = '';}" required>
+                            <input type="file" name="song" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" style="padding-top: 10px" required>
                             <input type="submit" value="UPLOAD" >
                         </form>
                     </div>
@@ -22,3 +22,22 @@
         </div>
     </div>
 </div>
+
+<script  type="application/javascript">
+    $('#addSongForm').find('[type=submit]').on('click', function (e) {
+        e.preventDefault()
+        const formData = new FormData($('#addSongForm')[0]);
+        formData.append('playlistId', {{playlist.id}})
+        $.ajax({
+            url: '/song',
+            type: 'POST',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData
+        }).then(
+                () => $(location).attr('href', '/playlist/' + {{playlist.id}}),
+                err => console.error(err)
+        )
+    })
+</script>

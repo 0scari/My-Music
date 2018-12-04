@@ -6,6 +6,7 @@ const status = require('http-status-codes')
 const multiparty = require('multiparty')
 const fs = require('fs')
 const playlistService = require('../services/playlist_service')
+const songService = require('../services/song_service')
 
 
 router.get('/playlists', async(req, res) => {
@@ -15,9 +16,13 @@ router.get('/playlists', async(req, res) => {
 
 router.get('/playlist/:id', async(req, res) => {
     const playlist = await playlistService.find(req.params.id)
-    if (playlist)
-        res.render('playlist_body', {playlist: playlist.dataValues, hasImage: !!playlist.dataValues.imageData})
-    else
+    if (playlist) {
+        const songs = await songService.allSongsForPlaylist(req.params.id)
+        res.render('playlist_body', {
+            playlist: playlist.dataValues,
+            songs: songs,
+            hasImage: !!playlist.dataValues.imageData})
+    } else
         res.status(status.BAD_REQUEST).send()
 })
 

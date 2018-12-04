@@ -21,8 +21,11 @@ db.Sequelize = Sequelize
 
 db.users = require('./models/user')(sequelize, Sequelize)
 db.playlists = require('./models/playlist')(sequelize, Sequelize)
+db.songs = require('./models/song')(sequelize, Sequelize)
 
 db.users.hasMany(db.playlists)
 db.playlists.belongsTo(db.users)
+db.songs.belongsTo(db.playlists)
+db.playlists.hasMany(db.songs)
 
-module.exports = db;
+module.exports = db

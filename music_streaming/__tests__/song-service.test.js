@@ -4,8 +4,13 @@
 
 // jest.mock('gridfs-stream')
 jest.mock('fs')
+jest.genMockFromModule('gridfs-stream')
+jest.mock('gridfs-stream')
+
+let gfs = require('gridfs-stream')
+
 const songService = require('../services/song-service')
-const fs = require('fs')
+const stream = require('stream')
 
 
 describe('SongService test suit', () => {
@@ -13,30 +18,41 @@ describe('SongService test suit', () => {
         jest.restoreAllMocks();
     })
 
-    test('check if storeFile() calls streamToMongo()', async done => {
-        jest.spyOn(songService, 'streamToMongo').mockImplementation(controls => controls.resolve())
-        try {
-            await songService.storeFile('x', 'y')
-        } catch (e) {
-        }
-        expect(songService.streamToMongo).toHaveBeenCalledTimes(1)
-        done()
+    test('test if finish event is called', async done => {
+        // NINJA level test !
+        const readable = stream.Readable()
+        readable._read = jest.fn()
+        readable.pipe = jest.fn((writable) => {
+            writable.on = jest.fn((eventName, resolve) => {
+                if (eventName === 'finish'){
+                    done()
+                    resolve()
+                }
+            })
+            return writable
+        })
+        await songService.storeFile(readable)
     })
 
-    test('check if streamToMongo() calls fs.unlink', async done => {
-        const mockedStream = require('stream').Writable()
-        songService.streamToMongo({
-            reject: (err) => {},
-            resolve: () => {}},
-            mockedStream)
-        mockedStream.end(() => { // end streaming to trigger finish event
-            expect(fs.unlink).toHaveBeenCalledTimes(1)
-            done()
+    test('test if error event is called', async done => {
+        // NINJA level test !
+        const readable = stream.Readable()
+        readable._read = jest.fn()
+        readable.pipe = jest.fn((writable) => {
+            writable.on = jest.fn((eventName, reject) => {
+                if (eventName === 'error'){
+                    done()
+                    reject()
+                } else
+                    return writable
+            })
+            return writable
         })
+        await songService.storeFile(readable)
     })
 
     test('check if .openReadStream() gets to streaming finidh', async done => {
-        const mockedStream = require('stream').Writable()
+        const mockedStream = stream.Writable()
         try {
             const promise = songService.openReadStream(mockedStream, "")
             mockedStream.end(async() => { // end streaming to trigger finish event

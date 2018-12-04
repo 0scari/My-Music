@@ -5,6 +5,7 @@ const server = require('../../bin/www')
 const status = require('http-status-codes')
 
 jest.mock('../../services/playlist_service')
+jest.mock('../../services/song_service')
 
 beforeAll( async() => console.log('Jest starting!'))
 
@@ -15,7 +16,7 @@ afterAll(() => {
 })
 
 describe('GET /playlists', () => {
-    test('check if endpoint works', async done => {
+    test('test if returns 200 when requested', async done => {
         await request(server).get('/playlists')
             .expect(status.OK)
         done()

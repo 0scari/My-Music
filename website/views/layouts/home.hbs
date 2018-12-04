@@ -93,4 +93,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Bootstrap Core JavaScript -->
 <script src="/js/bootstrap.js"></script>
 </body>
+<script>
+    function changeAudioSource(id) {
+        let audio = $("#audio-player");
+        audio.attr("src", "http://localhost:3001/" + id);
+        /****************/
+        audio[0].load();//suspends and restores all audio element
+        //audio[0].play(); changed based on Sprachprofi's comment below
+        audio[0].oncanplaythrough = audio[0].play();
+        /****************/
+    }
+</script>
 </html>

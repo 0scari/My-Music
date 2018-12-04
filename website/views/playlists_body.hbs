@@ -27,7 +27,7 @@
                 <div class="tittle-head two">
                     <div class="col-lg-4 " style="padding: 0">
                             <div class="input-group">
-                                <input type="text" name="name" class="form-control" placeholder="New playlist name...">
+                                <input autocomplete="off" type="text" name="name" class="form-control" placeholder="New playlist name...">
                                 <span class="input-group-btn">
 												<button id="newPlaylist" class=" btn btn-primary" type="submit">Add</button>
 											  </span>
@@ -42,7 +42,6 @@
                             <img src="/images/playlist-{{#if this.dataValues.imageData}}{{ this.dataValues.id }}{{ else }}default{{/if}}.png"
                                  title="allbum-name" style="height: 180px; width: 180px">
                         </a>
-                        <a><i class="glyphicon glyphicon-play-circle"></i></a>
                         <a class="sing" href="/playlist/{{ this.dataValues.id }}">{{ this.dataValues.name }}</a>
                     </div>
                 {{else}}
