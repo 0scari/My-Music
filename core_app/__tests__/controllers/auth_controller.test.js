@@ -1,0 +1,48 @@
+'use strict'
+
+const request = require('supertest')
+const server = require('../../bin/www')
+const status = require('http-status-codes')
+
+jest.mock('../../services/user_service')
+const us = require('../../services/user_service')
+
+beforeAll( async() => console.log('Jest starting!'))
+
+// close the server after each test
+afterAll(() => {
+    server.close()
+    console.log('server closed!')
+})
+
+describe('POST /enter', () => {
+    test('302 returned when request is valid', async done => {
+        const userData = {
+            uuid: '2345867362108488',
+            first_name: 'userData.first_name',
+            last_name: 'userData.last_name',
+            email: 'userData.email'
+        }
+        await request(server).post('/enter')
+            .send(userData)
+            .expect(302)
+
+        expect(us.store).toHaveBeenCalledTimes(1)
+        done()
+    })
+
+    test('400 returned when has a parameter missing', async done => {
+        const userData = {
+            uuid: '2345867362108488',
+            first_name: 'userData.first_name',
+            // last_name: 'userData.last_name',
+            email: 'userData.email'
+        }
+        await request(server).post('/enter')
+            .send(userData)
+            .expect(400)
+
+        expect(us.store).toHaveBeenCalledTimes(0)
+        done()
+    })
+})
