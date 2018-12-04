@@ -19,3 +19,13 @@ module.exports.allSongsForPlaylist = async id => {
         throw e
     }
 }
+
+module.exports.allSongsForUser = async id => {
+    let songs = []
+    const user = await db.users.findById(id)
+    const playlists = await user.getPlaylists()
+    for (const playlist of playlists) {
+        songs = [...songs, await playlist.getSongs()]
+    }
+    return [].concat(...songs).map(e => e.dataValues)
+}
