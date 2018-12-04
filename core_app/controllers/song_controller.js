@@ -31,7 +31,7 @@ router.post('/song', async(req, res) => {
 })
 
 router.get('/songs', async(req, res) => {
-    const songs = await songService.allSongsForUser(1)
+    const songs = await songService.allSongsForUser(req.user.get('id'))
     res.render('songs_body', {songs: songs})
 })
 
