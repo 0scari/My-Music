@@ -1,0 +1,68 @@
+<link href="/css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css">
+
+<div class="header-section">
+    <!--toggle button start-->
+    <!--toggle button end-->
+    <!--notification menu start -->
+    <div class="menu-right">
+        <div class="profile_details">
+            <div class="col-md-4 serch-part">
+                <div id="shufflePlay" class="sb-search">
+                    <span class="sb-icon-search">
+                        <i class="fa fa-random fa-lg" aria-hidden="true" style="color: white"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-4 player">
+                <div class="audio-player">
+                    <audio preload="auto" autobuffer id="audio-player">
+                        <source id="audio-player-src" src="" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!---->
+                <script type="text/javascript">
+                    $(function(){
+                        $('#audio-player').mediaelementplayer({
+                            alwaysShowControls: true,
+                            features: ['playpause','progress','volume'],
+                            audioVolume: 'horizontal',
+                            iPadUseNativeControls: true,
+                            iPhoneUseNativeControls: true,
+                            AndroidUseNativeControls: true
+                        });
+                    });
+                </script>
+                <!--audio-->
+                <link rel="stylesheet" type="text/css" media="all" href="/css/audio.css">
+                <script type="text/javascript" src="/js/mediaelement-and-player.min.js"></script>
+                <!---->
+
+
+                <!--//-->
+                <ul class="next-top">
+                    <li><a id="backward" class="ar" href="#"> <img src="/images/arrow.png" alt=""/></a></li>
+                    <li><a id="forward" class="ar2" href="#"><img src="/images/arrow2.png" alt=""/></a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 login-pop">
+                <div id="loginpop">
+                    <a href="#" id="loginButton"><span> <i class="arrow glyphicon glyphicon-chevron-down"></i></span></a>
+                    <div id="loginBox">
+                        <div class="video-record-list">
+                            <div id="jp_container_1" class="jp-video jp-video-270p" role="application" aria-label="media player">
+                                <div class="jp-type-playlist">
+                                    <div class="jp-playlist">
+                                        <ul id="playlist" style="display: block;">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

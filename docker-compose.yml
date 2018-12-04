@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  music-streamin:
+    container_name: Music_Streaming
+    build: music_streaming
+    ports:
+      - "3001:3000"
+      - "9228:9229"
+    volumes:
+      - /Users/oskarspozdnakovs/pozdnako-y3/website:/usr/src/website
+      - mongoData:/data/db
+      - /Users/oskarspozdnakovs/pozdnako-y3/docker_mm_nm:/usr/src/app/node_modules
+    environment:
+      MONGO_CONN_STR: "mongodb://localhost:27017/songs"
+
+  core-app:
+    build: core_app
+    container_name: Core_App
+    ports:
+      - "9229:9229"
+      - "27017:27017"
+      - "3000:3000"
+    volumes:
+      - /Users/oskarspozdnakovs/pozdnako-y3/website:/usr/src/website
+      - /Users/oskarspozdnakovs/pozdnako-y3/docker_ca_nm:/usr/src/app/node_modules
+    environment:
+      IMG_STORG_PATTERN: '/usr/src/website/public/images/playlist-'
+      MONGO_ADDRESS: "http://music-streamin:3000/song-upload"
+
+  sqlDB:
+    image: mysql:8.0
+    container_name: MySql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'passw'
+
+volumes:
+  mongoData:
+
+

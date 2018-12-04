@@ -1,0 +1,53 @@
+<div id="page-wrapper">
+    <div class="inner-content">
+        <div class="music-browse">
+            <!--albums-->
+            <!-- pop-up-box -->
+            <link href="/css/popuo-box.css" rel="stylesheet" type="text/css" media="all">
+            <script src="/js/jquery.magnific-popup.js" type="text/javascript"></script>
+            <script src="/my-js/playlists_body.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('.popup-with-zoom-anim').magnificPopup({
+                        type: 'inline',
+                        fixedContentPos: false,
+                        fixedBgPos: true,
+                        overflowY: 'auto',
+                        closeBtnInside: true,
+                        preloader: false,
+                        midClick: true,
+                        removalDelay: 300,
+                        mainClass: 'my-mfp-zoom-in'
+                    });
+                    $('.song').children('a').click(function() {
+                        changeAudioSource($(this).closest('div').attr('name'))
+
+                    })
+                });
+            </script>
+            <!--//pop-up-box -->
+
+            <div class="browse">
+
+                {{#each songs}}
+                    <div name="{{this.fileName}}" class="col-md-3 song browse-grid">
+                        <a  href="#">
+                            <img src="/images/song-artwork.png"
+                                 title="allbum-name" style="height: 180px; width: 180px">
+                        </a>
+                        <a href="#"><i class="glyphicon glyphicon-play-circle"></i></a>
+                        <a class="sing" href="#">{{this.title}}</a>
+                    </div>
+                {{else}}
+                    <h4 class="title">No songs yet...</h4>
+                {{/each}}
+
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+    <!--body wrapper end-->
+    <!-- /w3l-agile-info -->
+</div>
