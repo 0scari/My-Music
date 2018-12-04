@@ -22,4 +22,8 @@ describe('Song Service tests', () => {
         done()
     })
 
+    test('test allSongsForUser() method', async done => {
+        await ss.allSongsForUser('id')
+        done()
+    })
 })

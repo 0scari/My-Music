@@ -22,6 +22,6 @@ db.songs = {
 
 }
 
-db.users.findById = () => ({getPlaylists: () => true})
+db.users.findById = () => ({getPlaylists: () => []})
 
 module.exports = db
