@@ -80,3 +80,12 @@ describe('POST /song', () => {
         done()
     })
 })
+
+describe('GET /songs', () => {
+    test('check if 200 endpoint is served', async done => {
+        await request(server).get('/songs')
+            .expect(status.OK)
+        expect(ss.allSongsForUser).toHaveBeenCalled()
+        done()
+    })
+})
