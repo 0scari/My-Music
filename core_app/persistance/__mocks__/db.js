@@ -23,5 +23,7 @@ db.songs = {
 }
 
 db.users.findById = () => ({getPlaylists: () => []})
+db.users.findOne = jest.fn()
+db.users.create = jest.fn()
 
 module.exports = db
