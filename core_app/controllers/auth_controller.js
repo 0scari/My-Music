@@ -18,5 +18,10 @@ router.post('/enter', async(req, res) => {
     res.redirect('/')
 })
 
+router.get('/logout', async(req, res) => {
+    res.clearCookie('uuid')
+    res.status(status.OK).send()
+})
+
 module.exports = router
 
