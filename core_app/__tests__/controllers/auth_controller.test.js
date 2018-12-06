@@ -28,6 +28,7 @@ describe('POST /enter', () => {
             .expect(302)
 
         expect(us.store).toHaveBeenCalledTimes(1)
+        us.store = jest.fn() // manual reset
         done()
     })
 
@@ -43,6 +44,31 @@ describe('POST /enter', () => {
             .expect(400)
 
         expect(us.store).toHaveBeenCalledTimes(0)
+        done()
+    })
+})
+
+describe('get /logout', () => {
+    afterEach(() => {
+        jest.restoreAllMocks()
+    })
+
+    test('200 returned when valid request to log out is received', async done => {
+        await request(server).get('/logout')
+            .set('Cookie', ['uuid=2345867362108488'])
+            .expect(status.OK)
+
+        expect(us.getUserByUuid).toHaveBeenCalledTimes(1)
+        us.getUserByUuid = jest.fn() // manual rest
+        done()
+    })
+
+    test('user service is not called when invalid request to log out is received', async done => {
+        await request(server).get('/logout')
+            // .set('Cookie', ['uuid=2345867362108488'])
+            .expect(status.OK)
+
+        expect(us.getUserByUuid).toHaveBeenCalledTimes(0)
         done()
     })
 })
