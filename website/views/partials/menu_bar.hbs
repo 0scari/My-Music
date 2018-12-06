@@ -17,7 +17,7 @@
             <li><a href="/playlists" style="background-color: #111;"><i class="lnr lnr-indent-increase"></i> <span>Playlists</span></a>
             </li>
             <li style="float: bottom">
-                <a href="#" style="background-color: #111;"><i class="lnr lnr-exit"></i></a>
+                <a id="exit" style="background-color: #111;"><i class="lnr lnr-exit"></i></a>
             </li>
         </ul>
         <!--sidebar nav end-->
@@ -54,4 +54,18 @@
         </div>
     </div>
 </div>
-<!-- //app-->
+
+<script>
+    $('document').ready(function(){
+        $('#exit').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/logout',
+            }).then(
+                () => $(location).attr('href', '/')
+            )
+        })
+
+    });
+
+</script>
