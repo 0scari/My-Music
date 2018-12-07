@@ -23,17 +23,6 @@ describe('POST /song-upload', () => {
             .expect(status.ACCEPTED)
         done()
     })
-
-    // test('check if 400 returned when artist parameter not present', async done => {
-    //     //expect.assertions(2)
-    //     await request(server).post('/song-upload')
-    //         .field('title', 'ph')
-    //         .field('aaa', 'dfsa')
-    //         .field('album', 'ph')
-    //         .attach('song', '__tests__/Screen Shot 2017-12-25 at 18.29.47.png')
-    //         .expect(status.BAD_REQUEST)
-    //     done()
-    // })
 })
 
 describe('GET /music_streaming/:id', () => {
