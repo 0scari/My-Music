@@ -10,7 +10,7 @@ const songService = require('../services/song_service')
 
 
 router.get('/playlists', async(req, res) => {
-    const playlists = await playlistService.getAllUserPlaylists(1)
+    const playlists = await playlistService.getAllUserPlaylists(req.user.get('id'))
     res.render('playlists_body', {playlists: playlists})
 })
 
@@ -29,7 +29,7 @@ router.get('/playlist/:id', async(req, res) => {
 router.post('/playlist', async(req, res) => {
     try {
         if (req.body.name) {
-            const playlist = await playlistService.store({name: req.body.name, userId: 1})
+            const playlist = await playlistService.store({name: req.body.name, userId: req.user.get('id')})
             res.status(status.CREATED).send({id: playlist.get('id')})
         }
         res.status(status.BAD_REQUEST).send()

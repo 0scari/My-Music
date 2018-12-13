@@ -5,6 +5,7 @@ const server = require('../../bin/www')
 const status = require('http-status-codes')
 const sha256 = require('sha256')
 
+jest.mock('../../services/user_service')
 jest.mock('../../services/song_service')
 const ss = require('../../services/song_service')
 jest.mock('../../services/mongo_service')
@@ -33,7 +34,7 @@ describe('POST /song', () => {
             .field('album', song.album)
             .field('playlistId', song.playlistId)
             .attach('song', '__tests__/' + fileName)
-            .expect(status.CREATED)
+            .set('Cookie', ['uuid=2345867362108488']).expect(status.CREATED)
         expect(ss.store).toHaveBeenCalledTimes(1)
         expect(ms.store).toHaveBeenCalledTimes(1)
 
@@ -54,7 +55,7 @@ describe('POST /song', () => {
             .field('artist', 'song.artist')
             .field('playlistId', 3)
             .attach('song', '__tests__/' + fileName)
-            .expect(status.BAD_REQUEST)
+            .set('Cookie', ['uuid=2345867362108488']).expect(status.BAD_REQUEST)
         done()
     })
 
@@ -65,7 +66,7 @@ describe('POST /song', () => {
             .field('album', 'song.artist')
             .field('playlistId', 'song.playlistId')
             .attach('song', '__tests__/' + fileName)
-            .expect(status.BAD_REQUEST)
+            .set('Cookie', ['uuid=2345867362108488']).expect(status.BAD_REQUEST)
         done()
     })
 
@@ -76,7 +77,7 @@ describe('POST /song', () => {
             .field('album', song.album)
             .field('playlistId', song.playlistId)
             .attach('song', '__tests__/' + fileName)
-            .expect(status.INTERNAL_SERVER_ERROR)
+            .set('Cookie', ['uuid=2345867362108488']).expect(status.INTERNAL_SERVER_ERROR)
         done()
     })
 })
@@ -84,7 +85,7 @@ describe('POST /song', () => {
 describe('GET /songs', () => {
     test('check if 200 endpoint is served', async done => {
         await request(server).get('/songs')
-            .expect(status.OK)
+            .set('Cookie', ['uuid=2345867362108488']).expect(status.OK)
         expect(ss.allSongsForUser).toHaveBeenCalled()
         done()
     })
